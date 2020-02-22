@@ -14,23 +14,23 @@ public class MainActivity extends AppCompatActivity {
         findViewById(R.id.theEgg).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                findViewById(R.id.theEgg).setBackgroundColor(Color.parseColor("98fb98"));
+                findViewById(R.id.theEgg).setBackgroundColor(Color.parseColor("#98fb98"));
             }
         });
 
         findViewById(R.id.theChicken).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                findViewById(R.id.theChicken).setBackgroundColor(Color.parseColor("ff0000"));
-                findViewById(R.id.theEgg).setBackgroundColor(Color.parseColor("98fb98"));
+                findViewById(R.id.theChicken).setBackgroundColor(Color.parseColor("#ff0000"));
+                findViewById(R.id.theEgg).setBackgroundColor(Color.parseColor("#98fb98"));
             }
         });
 
         findViewById(R.id.neither).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                findViewById(R.id.neither).setBackgroundColor(Color.parseColor("ff0000"));
-                findViewById(R.id.theEgg).setBackgroundColor(Color.parseColor("98fb98"));
+                findViewById(R.id.neither).setBackgroundColor(Color.parseColor("#ff0000"));
+                findViewById(R.id.theEgg).setBackgroundColor(Color.parseColor("#98fb98"));
             }
         });
     }
