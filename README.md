@@ -6,7 +6,7 @@
 This app asks the user a question! There are three choices to select from and only one is correct. 
 
 ### App Walk-though
-<img src=https://media.giphy.com/media/Jsn7TEzXyYvjiREeQo/giphy.gif width=200><br>
+<img src=https://media.giphy.com/media/eNvTxGr8RqgAclrlnS/giphy.gif width=200><br>
 
 ## Required
 - [x] Create New Project in Android Studio
