@@ -49,6 +49,31 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
+        findViewById(R.id.hide).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                findViewById(R.id.theChicken).setVisibility(View.INVISIBLE);
+                findViewById(R.id.theEgg).setVisibility(View.INVISIBLE);
+                findViewById(R.id.neither).setVisibility(View.INVISIBLE);
+                findViewById(R.id.hide).setVisibility(View.INVISIBLE);
+                findViewById(R.id.open).setVisibility(View.VISIBLE);
+                findViewById(R.id.theChicken).setBackgroundColor(Color.parseColor("#C5F2FF"));
+                findViewById(R.id.theEgg).setBackgroundColor(Color.parseColor("#C5F2FF"));
+                findViewById(R.id.neither).setBackgroundColor(Color.parseColor("#C5F2FF"));
+            }
+        });
+
+        findViewById(R.id.open).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                findViewById(R.id.theChicken).setVisibility(View.VISIBLE);
+                findViewById(R.id.theEgg).setVisibility(View.VISIBLE);
+                findViewById(R.id.neither).setVisibility(View.VISIBLE);
+                findViewById(R.id.hide).setVisibility(View.VISIBLE);
+                findViewById(R.id.open).setVisibility(View.INVISIBLE);
+            }
+        });
+
         findViewById(R.id.edit).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v){
