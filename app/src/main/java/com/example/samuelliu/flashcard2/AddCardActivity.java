@@ -26,9 +26,13 @@ public class AddCardActivity extends AppCompatActivity {
             public void onClick(View v) {
                 String string1 = ((EditText)findViewById(R.id.questionText)).getText().toString();
                 String string2 = ((EditText)findViewById(R.id.answerText)).getText().toString();
+                String string3 = ((EditText)findViewById(R.id.wrongAnswer1)).getText().toString();
+                String string4 = ((EditText)findViewById(R.id.wrongAnswer2)).getText().toString();
                 Intent data = new Intent();
                 data.putExtra("String 1", string1);
                 data.putExtra("String 2", string2);
+                data.putExtra("String 3", string3);
+                data.putExtra("String 4", string4);
                 setResult(RESULT_OK, data);
                 if(((TextView)findViewById(R.id.questionText)).getText().toString().equals("") ||
                         (((TextView)findViewById(R.id.answerText)).getText().toString().equals(""))){
@@ -43,8 +47,12 @@ public class AddCardActivity extends AppCompatActivity {
         });
         String s1 = getIntent().getStringExtra("stringKey1");
         String s2 = getIntent().getStringExtra("stringKey2");
+        String s3 = getIntent().getStringExtra("stringKey3");
+        String s4 = getIntent().getStringExtra("stringKey4");
         ((TextView)findViewById(R.id.questionText)).setText(s1);
         ((TextView)findViewById(R.id.answerText)).setText(s2);
+        ((TextView)findViewById(R.id.wrongAnswer1)).setText(s3);
+        ((TextView)findViewById(R.id.wrongAnswer2)).setText(s4);
 
     }
 }

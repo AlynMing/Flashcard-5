@@ -55,8 +55,12 @@ public class MainActivity extends AppCompatActivity {
                 Intent intent = new Intent(MainActivity.this, AddCardActivity.class);
                 String string1 = ((TextView)findViewById(R.id.flashcard_questions)).getText().toString();
                 String string2 = ((TextView)findViewById(R.id.theEgg)).getText().toString();
+                String string3 = ((TextView)findViewById(R.id.theChicken)).getText().toString();
+                String string4 = ((TextView)findViewById(R.id.neither)).getText().toString();
                 intent.putExtra("stringKey1", string1);
                 intent.putExtra("stringKey2", string2);
+                intent.putExtra("stringKey3", string3);
+                intent.putExtra("stringKey4", string4);
                 MainActivity.this.startActivityForResult(intent,100);
 
             }
@@ -68,8 +72,12 @@ public class MainActivity extends AppCompatActivity {
         if(requestCode == 100 && data!= null){
             String string1 = data.getExtras().getString("String 1");
             String string2 = data.getExtras().getString("String 2");
+            String string3 = data.getExtras().getString("String 3");
+            String string4 = data.getExtras().getString("String 4");
             ((TextView)findViewById(R.id.flashcard_questions)).setText(string1);
             ((TextView)findViewById(R.id.theEgg)).setText(string2);
+            ((TextView)findViewById(R.id.theChicken)).setText(string3);
+            ((TextView)findViewById(R.id.neither)).setText(string4);
             Snackbar.make((findViewById(R.id.flashcard_questions)),"Card created!",Snackbar.LENGTH_SHORT).show();
         }
 
