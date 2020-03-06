@@ -1,3 +1,4 @@
 <resources>
     <string name="app_name">FlashCard2</string>
+    <string name="title_activity_main_add">MainActivityAdd</string>
 </resources>
