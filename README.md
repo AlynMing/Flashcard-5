@@ -4,10 +4,9 @@
 
 ### App Description
 This app asks the user a question! There are three choices to select from and only one is correct. 
-The user can choose to make the choices invisible by clicking on the closed eye icon and make them reappear with the open eye icon. 
 
 ### App Walk-though
-<img src=https://media.giphy.com/media/UTdqJY2Z3nVELgLt20/giphy.gif width=200><br>
+<img src=https://media.giphy.com/media/eNvTxGr8RqgAclrlnS/giphy.gif width=200><br>
 
 ## Required
 - [x] Create New Project in Android Studio
@@ -17,7 +16,7 @@ The user can choose to make the choices invisible by clicking on the closed eye 
 - [x] Push code to GitHub
 ## Optional
 - [x] toggle the flashcard between the question side and the answer side
-- [] Style the question and answer side of the card to better distinguish between the two sides
-- [] Add selectable multiple choice answers beneath the card
+- [x] Style the question and answer side of the card to better distinguish between the two sides
+- [x] Add selectable multiple choice answers beneath the card
    - [x] Change the background color of the multiple choice answers when clicked to indicate whether the question was answered correctly
-- [] Further customize and style the card
+- [ ] Further customize and style the card
