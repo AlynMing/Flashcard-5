@@ -6,7 +6,7 @@
 The app now has the ability to save previous cards made when the app is closed. Users can also add cards and click the next button to see which cards they made. 
 
 ### App Walk-though
-https://github.com/kimberly-kao/Flashcard/blob/master/Lab3.gif
+<img src="https://github.com/kimberly-kao/Flashcard/blob/master/Lab3.gif" width=200><br>
 
 ## Required
 - [x] User can create a card and still see their created card when the app is relaunched.
