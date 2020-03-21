@@ -9,11 +9,16 @@ import android.view.View;
 import android.widget.TextView;
 
 import java.util.List;
+import java.util.Random;
 
 public class MainActivity extends AppCompatActivity {
     FlashcardDatabase flashcardDatabase;
     int currentCardDisplayedIndex = 0;
     List<Flashcard> allFlashcards;
+    public int getRandomNumber(int minNumber, int maxNumber) {
+        Random rand = new Random();
+        return rand.nextInt((maxNumber - minNumber) + 1) + minNumber;
+    }
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -110,13 +115,16 @@ public class MainActivity extends AppCompatActivity {
                 if (currentCardDisplayedIndex > allFlashcards.size()-1) {
                     currentCardDisplayedIndex = 0;
                 }
-                ((TextView) findViewById(R.id.flashcard_questions)).setText(allFlashcards.get(currentCardDisplayedIndex).getQuestion());
-                ((TextView) findViewById(R.id.theEgg)).setText(allFlashcards.get(currentCardDisplayedIndex).getAnswer());
-                ((TextView) findViewById(R.id.theChicken)).setText(allFlashcards.get(currentCardDisplayedIndex).getWrongAnswer1());
-                ((TextView) findViewById(R.id.neither)).setText(allFlashcards.get(currentCardDisplayedIndex).getWrongAnswer2());
+                int randNum = getRandomNumber(0,currentCardDisplayedIndex);
+                ((TextView) findViewById(R.id.flashcard_questions)).setText(allFlashcards.get(randNum).getQuestion());
+                ((TextView) findViewById(R.id.theEgg)).setText(allFlashcards.get(randNum).getAnswer());
+                ((TextView) findViewById(R.id.theChicken)).setText(allFlashcards.get(randNum).getWrongAnswer1());
+                ((TextView) findViewById(R.id.neither)).setText(allFlashcards.get(randNum).getWrongAnswer2());
                 findViewById(R.id.theChicken).setBackgroundColor(Color.parseColor("#C5F2FF"));
                 findViewById(R.id.theEgg).setBackgroundColor(Color.parseColor("#C5F2FF"));
                 findViewById(R.id.neither).setBackgroundColor(Color.parseColor("#C5F2FF"));
+
+
             }
         });
 
@@ -124,8 +132,28 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 flashcardDatabase.deleteCard(((TextView) findViewById(R.id.flashcard_questions)).getText().toString());
+                allFlashcards = flashcardDatabase.getAllCards();
+                currentCardDisplayedIndex++;
+                if (currentCardDisplayedIndex > allFlashcards.size() - 1) {
+                    currentCardDisplayedIndex = 0;
+                }
+                if(allFlashcards.size() == 0) {
+                    ((TextView) findViewById(R.id.flashcard_questions)).setText("No cards left. Please add a card");
+                    ((TextView) findViewById(R.id.theEgg)).setText("No cards left.");
+                    ((TextView) findViewById(R.id.theChicken)).setText("No cards left.");
+                    ((TextView) findViewById(R.id.neither)).setText("No cards left.");
+                }
+                else{
+                    ((TextView)findViewById(R.id.flashcard_questions)).setText(allFlashcards.get(currentCardDisplayedIndex).getQuestion());
+                    ((TextView)findViewById(R.id.theEgg)).setText(allFlashcards.get(currentCardDisplayedIndex).getAnswer());
+                    ((TextView)findViewById(R.id.theChicken)).setText(allFlashcards.get(currentCardDisplayedIndex).getWrongAnswer1());
+                    ((TextView)findViewById(R.id.neither)).setText(allFlashcards.get(currentCardDisplayedIndex).getWrongAnswer2());
+                }
             }
+
         });
+
+        //Samuel told me
 
 
     }
