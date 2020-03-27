@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<set xmlns:android="http://schemas.android.com/apk/res/android">
+    android:interpolator="@android:anim/linear_interpolator">
+    <translate
+        android:fromXDelta="100%p"
+        android:toXDelta="0"
+        android:duration="500"
+        />
+    Intent i = new Intent(FirstActivity.this, SecondActivity.class);
+    startActivity(i);
+    overridePendingTransition(R.anim.right_in, R.anim.left_out);
+</set>
