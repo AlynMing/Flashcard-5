@@ -3,15 +3,23 @@ package com.example.kaofa.flashcard2;
 import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
+import android.os.CountDownTimer;
 import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
+import android.view.animation.Animation;
+import android.view.animation.AnimationUtils;
 import android.widget.TextView;
 
 import java.util.List;
 import java.util.Random;
 
 public class MainActivity extends AppCompatActivity {
+    CountDownTimer countDownTimer;
+    private void startTimer() {
+        countDownTimer.cancel();
+        countDownTimer.start();
+    }
     FlashcardDatabase flashcardDatabase;
     int currentCardDisplayedIndex = 0;
     List<Flashcard> allFlashcards;
@@ -21,10 +29,19 @@ public class MainActivity extends AppCompatActivity {
     }
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+        startTimer();
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         flashcardDatabase = new FlashcardDatabase(this);
         allFlashcards = flashcardDatabase.getAllCards();
+        countDownTimer = new CountDownTimer(16000, 1000) {
+            public void onTick(long millisUntilFinished) {
+                ((TextView) findViewById(R.id.timer)).setText("" + millisUntilFinished / 1000);
+            }
+
+            public void onFinish() {
+            }
+        };
         if (allFlashcards != null && allFlashcards.size() > 0) {
             ((TextView) findViewById(R.id.flashcard_questions)).setText(allFlashcards.get(0).getQuestion());
             ((TextView) findViewById(R.id.theEgg)).setText(allFlashcards.get(0).getAnswer());
@@ -63,6 +80,7 @@ public class MainActivity extends AppCompatActivity {
             public void onClick(View v) {
                 Intent intent = new Intent(MainActivity.this, AddCardActivity.class);
                 MainActivity.this.startActivityForResult(intent, 100);
+                overridePendingTransition(R.anim.right_in, R.anim.left_in);
             }
         });
 
@@ -104,6 +122,7 @@ public class MainActivity extends AppCompatActivity {
                 intent.putExtra("stringKey3", string3);
                 intent.putExtra("stringKey4", string4);
                 MainActivity.this.startActivityForResult(intent, 100);
+                overridePendingTransition(R.anim.right_in, R.anim.left_in);
 
             }
         });
@@ -111,18 +130,52 @@ public class MainActivity extends AppCompatActivity {
         findViewById(R.id.next_button).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                currentCardDisplayedIndex++;
-                if (currentCardDisplayedIndex > allFlashcards.size()-1) {
-                    currentCardDisplayedIndex = 0;
-                }
-                int randNum = getRandomNumber(0,currentCardDisplayedIndex);
-                ((TextView) findViewById(R.id.flashcard_questions)).setText(allFlashcards.get(randNum).getQuestion());
-                ((TextView) findViewById(R.id.theEgg)).setText(allFlashcards.get(randNum).getAnswer());
-                ((TextView) findViewById(R.id.theChicken)).setText(allFlashcards.get(randNum).getWrongAnswer1());
-                ((TextView) findViewById(R.id.neither)).setText(allFlashcards.get(randNum).getWrongAnswer2());
-                findViewById(R.id.theChicken).setBackgroundColor(Color.parseColor("#C5F2FF"));
-                findViewById(R.id.theEgg).setBackgroundColor(Color.parseColor("#C5F2FF"));
-                findViewById(R.id.neither).setBackgroundColor(Color.parseColor("#C5F2FF"));
+                final Animation leftOutAnim = AnimationUtils.loadAnimation(v.getContext(),R.anim.left_in);
+                final Animation rightInAnim = AnimationUtils.loadAnimation(v.getContext(), R.anim.right_in);
+                findViewById(R.id.flashcard_questions).startAnimation(leftOutAnim);
+                findViewById(R.id.theChicken).startAnimation(leftOutAnim);
+                findViewById(R.id.theEgg).startAnimation(leftOutAnim);
+                findViewById(R.id.neither).startAnimation(leftOutAnim);
+                leftOutAnim.setAnimationListener(new Animation.AnimationListener(){
+                    @Override
+                    public void onAnimationStart(Animation animation) {
+                        // this method is called when the animation first starts
+                    }
+
+                    @Override
+                    public void onAnimationEnd(Animation animation) {
+                        // this method is called when the animation is finished playing
+                        int localSize = allFlashcards.size()-1;
+                        if(localSize<0)localSize=0;
+                        currentCardDisplayedIndex = getRandomNumber(0,localSize);
+                        if (currentCardDisplayedIndex > allFlashcards.size()-1) {
+                            currentCardDisplayedIndex = 0;
+                        }
+
+                        if(allFlashcards.size()!=0){
+                            ((TextView) findViewById(R.id.flashcard_questions)).setText(allFlashcards.get(currentCardDisplayedIndex).getQuestion());
+                            ((TextView) findViewById(R.id.theEgg)).setText(allFlashcards.get(currentCardDisplayedIndex).getAnswer());
+                            ((TextView) findViewById(R.id.theChicken)).setText(allFlashcards.get(currentCardDisplayedIndex).getWrongAnswer1());
+                            ((TextView) findViewById(R.id.neither)).setText(allFlashcards.get(currentCardDisplayedIndex).getWrongAnswer2());
+                        }
+
+                        findViewById(R.id.theChicken).setBackgroundColor(Color.parseColor("#C5F2FF"));
+                        findViewById(R.id.theEgg).setBackgroundColor(Color.parseColor("#C5F2FF"));
+                        findViewById(R.id.neither).setBackgroundColor(Color.parseColor("#C5F2FF"));
+
+                        findViewById(R.id.flashcard_questions).startAnimation(rightInAnim);
+                        findViewById(R.id.theChicken).startAnimation(rightInAnim);
+                        findViewById(R.id.theEgg).startAnimation(rightInAnim);
+                        findViewById(R.id.neither).startAnimation(rightInAnim);
+                    }
+
+                    @Override
+                    public void onAnimationRepeat(Animation animation) {
+                        // we don't need to worry about this method
+                    }
+                });
+
+
 
 
             }
@@ -152,8 +205,6 @@ public class MainActivity extends AppCompatActivity {
             }
 
         });
-
-        //Samuel told me
 
 
     }
