@@ -6,7 +6,7 @@
 The app has been updated with new animations such as a count down timer and swipe left when the next button is clicked. 
 
 ### App Walk-though
-<img src="https://giphy.com/gifs/jswJSgz1sJEdDdWvgh" width=200><br>
+<img src=https://giphy.com/gifs/jswJSgz1sJEdDdWvgh width=200><br>
 
 ## Required
 - [x] User sees a transition animation when going from the main screen to the add card screen.
@@ -44,7 +44,7 @@ Users can now edit the question and the answer of the flashcard.
 
 ### App Walk-though
 
-<img src="https://giphy.com/gifs/jswJSgz1sJEdDdWvgh" width=200><br>
+<img src=https://giphy.com/gifs/jswJSgz1sJEdDdWvgh width=200><br>
 
 ## Required
 - [x] User can click on a ‘+’ button that takes the user to new ‘Add Card Screen’
