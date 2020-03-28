@@ -29,7 +29,6 @@ public class MainActivity extends AppCompatActivity {
     }
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-        startTimer();
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         flashcardDatabase = new FlashcardDatabase(this);
@@ -42,6 +41,7 @@ public class MainActivity extends AppCompatActivity {
             public void onFinish() {
             }
         };
+        startTimer();
         if (allFlashcards != null && allFlashcards.size() > 0) {
             ((TextView) findViewById(R.id.flashcard_questions)).setText(allFlashcards.get(0).getQuestion());
             ((TextView) findViewById(R.id.theEgg)).setText(allFlashcards.get(0).getAnswer());
@@ -174,9 +174,6 @@ public class MainActivity extends AppCompatActivity {
                         // we don't need to worry about this method
                     }
                 });
-
-
-
 
             }
         });
