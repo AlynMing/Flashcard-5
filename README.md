@@ -4,6 +4,8 @@
 
 ### App Description
 The app has been updated with new animations such as a count down timer and swipe left when the next button is clicked. 
+IDE: Android Studios
+SDK: Android 9.0 (Pie)
 
 ### App Walk-though
 <img src=https://github.com/kimberly-kao/Flashcard/blob/master/lab4True.gif width=200><br>
